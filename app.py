@@ -4,12 +4,93 @@ from textblob import TextBlob
 import re
 from googletrans import Translator
 
-# Configuración de la página
+# Configuración de la página con tema oscuro
 st.set_page_config(
     page_title="Analizador de Texto Simple",
     page_icon="📊",
     layout="wide"
 )
+
+# CSS personalizado para dark mode
+st.markdown("""
+    <style>
+        /* Tema oscuro principal */
+        :root {
+            --primary-bg: #2D2D2D;
+            --secondary-bg: #252525;
+            --element-bg: #333333;
+            --border-color: #444444;
+            --text-color: #FFFFFF;
+            --accent-color: #4F8BF9;
+        }
+        
+        /* Todos los textos en blanco */
+        * {
+            color: var(--text-color) !important;
+        }
+        
+        body {
+            background-color: var(--primary-bg);
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        /* Contenedor principal */
+        .stApp {
+            background-color: var(--primary-bg);
+            padding: 2rem;
+        }
+        
+        /* Sidebar */
+        .stSidebar {
+            background-color: var(--secondary-bg) !important;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        /* Text areas e inputs */
+        .stTextArea textarea, .stTextInput input {
+            background-color: var(--element-bg) !important;
+            border: 1px solid var(--border-color) !important;
+        }
+        
+        /* Botones */
+        .stButton button {
+            background-color: var(--accent-color) !important;
+            border: none !important;
+        }
+        
+        /* Progress bars */
+        .stProgress > div > div > div {
+            background-color: var(--accent-color) !important;
+        }
+        
+        /* Expanders */
+        .stExpander {
+            border: 1px solid var(--border-color) !important;
+            border-radius: 8px !important;
+        }
+        
+        /* Tabs */
+        .stTabs [data-baseweb="tab-list"] {
+            gap: 10px;
+        }
+        
+        .stTabs [data-baseweb="tab"] {
+            background-color: var(--element-bg) !important;
+            border-radius: 8px !important;
+            padding: 10px 20px !important;
+        }
+        
+        .stTabs [aria-selected="true"] {
+            background-color: var(--accent-color) !important;
+        }
+        
+        /* Alertas */
+        .stAlert {
+            background-color: var(--element-bg) !important;
+            border: 1px solid var(--border-color) !important;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 # Título y descripción
 st.title("📝 Analizador de Texto con TextBlob")
@@ -61,7 +142,7 @@ def contar_palabras(texto):
         "the", "their", "theirs", "them", "themselves", "then", "there", "there's", 
         "these", "they", "they'd", "they'll", "they're", "they've", "this", "those", 
         "through", "to", "too", "under", "until", "up", "very", "was", "wasn't", "we", 
-        "we'd", "we'll", "we're", "we've", "were",         "weren't", "what", "what's", "when", 
+        "we'd", "we'll", "we're", "we've", "were", "weren't", "what", "what's", "when", 
         "when's", "where", "where's", "which", "while", "who", "who's", "whom", "why", 
         "why's", "with", "would", "wouldn't", "you", "you'd", "you'll", "you're", "you've",
         "your", "yours", "yourself", "yourselves"
